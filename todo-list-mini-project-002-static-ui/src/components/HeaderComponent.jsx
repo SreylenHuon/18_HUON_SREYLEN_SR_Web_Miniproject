@@ -3,7 +3,7 @@ import React from "react";
 const HeaderComponent = ({ userData }) => {
   return (
     <>
-      <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg shadow">
+      <div className="flex items-center justify-between p-4  rounded-lg ">
         <div className="text-2xl ">
           <span className="text-gray-500 ">Workspace &gt;</span>{" "}
           <span className="text-blue-500 font-medium cursor-pointer">
@@ -28,7 +28,7 @@ const HeaderComponent = ({ userData }) => {
           </div>
         </div>
       </div>
-      <div className="w-full border-t border-red-300 mt-1"></div>
+      <div className="w-full border-t border-gray-300 mt-1"></div>
     </>
   );
 };

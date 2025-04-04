@@ -1,3 +1,4 @@
+"use client";
 import {
   Select,
   SelectContent,
@@ -5,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
 import { Clock, Ellipsis } from "lucide-react";
 import React from "react";
 const formatDate = (dateString) => {
@@ -26,12 +28,22 @@ export default async function CardComponent({ tasks }) {
   // const taskFinishStatus = taskData?.payload?.filter((task) => {
   //   return task.status === "FINISHED";
   // });
+  const handleUpdate = (taskId) => {
+    console.log("Update task:", taskId);
+    // You can trigger another modal or navigate to edit page
+  };
+
+  const handleDelete = (taskId) => {
+    console.log("Delete task:", taskId);
+    // Confirm and send delete request here
+  };
+
   return (
     <div>
       {tasks?.map((item) => (
         <div
           key={item?.taskId}
-          className="border gap-10 border-gray-300 rounded-xl w-[320px]"
+          className="border gap-10 border-gray-300 rounded-xl w-[320px] mb-5"
         >
           <div>
             <div className="p-5">
@@ -39,7 +51,32 @@ export default async function CardComponent({ tasks }) {
                 <h2 className="text-xl font-bold capitalize">
                   {item?.taskTitle}
                 </h2>
-                <Ellipsis />
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button>
+                      <Ellipsis />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-white rounded-xl p-6 shadow-xl w-[300px]">
+                    <div className="text-center mb-4">
+                      <h2 className="text-lg font-bold">Choose Option</h2>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <button
+                        onClick={() => handleUpdate(item.taskId)}
+                        className="w-full py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item.taskId)}
+                        className="w-full py-2 px-4 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
 
               {/* task detials */}
@@ -74,7 +111,7 @@ export default async function CardComponent({ tasks }) {
               </Select>
 
               {/* date */}
-              <p className="flex gap-3 text-light-steel-blue">
+              <p className="flex gap-3 text-light-steel-blue ">
                 <Clock size={22} /> {formatDate(item?.endDate)}
               </p>
             </div>

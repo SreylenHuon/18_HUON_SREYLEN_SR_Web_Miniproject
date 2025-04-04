@@ -7,7 +7,7 @@ const workSpaceLayout = async ({ children }) => {
   const userData = await getAllUser();
   return (
     <>
-      <div className="w-full bg-[#FFFFFF] ">
+      <div className="w-full pl-90 bg-[#FFFFFF] ">
         <HeaderComponent userData={userData} />
       </div>
 

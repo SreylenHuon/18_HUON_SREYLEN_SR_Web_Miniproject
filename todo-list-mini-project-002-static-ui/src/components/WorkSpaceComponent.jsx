@@ -41,7 +41,6 @@ const WorkSpaceComponent = async (dataTask) => {
           {/* <FormWorkspaceComponent /> */}
           <Dialog>
             <DialogTrigger>
-              {/* <button className="p-0.5 hover:bg-gray-100 duration-200 transition-colors text-gray-500 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 border rounded-lg"> */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -56,7 +55,6 @@ const WorkSpaceComponent = async (dataTask) => {
                   d="M12 4.5v15m7.5-7.5h-15"
                 />
               </svg>
-              {/* </button> */}
             </DialogTrigger>
 
             <DialogContent>
@@ -76,7 +74,7 @@ const WorkSpaceComponent = async (dataTask) => {
                             for="email"
                             className="block text-sm font-bold ml-1 mb-2 dark:text-white"
                           >
-                            Email address
+                            Workspace Name
                           </label>
                           <div className="relative">
                             <input
@@ -130,6 +128,30 @@ const WorkSpaceComponent = async (dataTask) => {
               <Ellipsis />
             </button>
           ))}
+        </nav>
+        {/* close workspace */}
+        <nav>
+          <h2 className="text-2xl font-medium">Forvorith</h2>
+          <nav className="mt-4 -mx-3 space-y-3 ">
+            {/* {dataWorkSpace.map((data) => (
+              <button
+                key={data.workspaceId}
+                className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+              >
+                <div className="flex items-center gap-x-2 ">
+                  <span
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: getRandomColor() }}
+                  ></span>
+
+                  <span className="text-2xl font-medium text-[#1E293B]">
+                    {data.workspaceName}
+                  </span>
+                </div>
+                <Ellipsis />
+              </button>
+            ))} */}
+          </nav>
         </nav>
       </div>
     </main>

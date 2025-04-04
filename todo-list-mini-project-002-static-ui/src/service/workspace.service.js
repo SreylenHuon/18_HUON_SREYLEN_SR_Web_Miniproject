@@ -1,4 +1,5 @@
 import headerToken from "@/app/api/headerToken";
+import next from "next";
 
 export const workSpaceService = async () => {
   const header = await headerToken();
@@ -6,6 +7,7 @@ export const workSpaceService = async () => {
     const workspace = await fetch(
       `${process.env.NEXTAUTH_URL}/workspaces?pageNo=0&pageSize=10&sortBy=workspaceId&sortDirection=ASC`,
       {
+        next: { tags: ["workspace"] },
         headers: header,
       }
     );

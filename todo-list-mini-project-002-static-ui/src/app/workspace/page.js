@@ -26,25 +26,25 @@ const WorkSpacePage = async () => {
         </div> */}
 
         <div className="w-full">
-          <h2 className="font-bold text-2xl text-[black]    p-10">
+          <h2 className="font-bold text-2xl py-5 text-[black]    ">
             HRD Design
           </h2>
           {/* <HeadertsubComponent /> */}
           <div className="flex  gap-10 ">
             <div className="gap-5 mb-5">
               <span className="text-[#F96666] font-medium">Not Started</span>
-              <div className="w-full border-t border-red-300 mt-1"></div>
-              <CardComponent tasks={taskNotStart} />
+              <div className="w-full border-t border-red-300 mb-8 "></div>
+              <CardComponent tasks={taskNotStart} className="mt-5" />
             </div>
 
             <div className="mb-5">
               <span className="text-[#4379F2] font-medium">In progress</span>
-              <div className="w-full border-t border-[#4379F2] mt-1"></div>
+              <div className="w-full border-t border-[#4379F2] mb-8"></div>
               <CardComponent tasks={taskInProgress} />
             </div>
             <div>
               <span className="text-[#009990] font-medium">Finished</span>
-              <div className="w-full border-t border-[#009990] mt-1"></div>
+              <div className="w-full border-t border-[#009990] mb-8"></div>
               <CardComponent tasks={taskFinished} />
             </div>
           </div>

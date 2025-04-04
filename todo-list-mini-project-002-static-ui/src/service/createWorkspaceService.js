@@ -1,16 +1,12 @@
 import headerToken from "@/app/api/headerToken";
 export async function createWorkspaceService(dataWorkspace) {
-  const token = headerToken();
-  console.log("dataworkspace", dataWorkspace);
+  const token = await headerToken();
+  const { workspaceName } = dataWorkspace;
   try {
     const res = await fetch(`${process.env.NEXT_APIURL}/workspace`, {
       method: "POST",
-      headers: {
-        ...token,
-
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataWorkspace),
+      headers: token,
+      body: JSON.stringify(workspaceName),
     });
 
     const data = await res.json();
