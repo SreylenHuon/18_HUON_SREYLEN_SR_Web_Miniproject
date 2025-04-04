@@ -6,7 +6,6 @@ import { getAllTask, getAllUser } from "@/service/user.service";
 import React from "react";
 
 const WorkSpacePage = async () => {
-  const userData = await getAllUser();
   const { payload: dataTask } = await getAllTask();
 
   const taskNotStart = dataTask.filter((item) => {
@@ -20,16 +19,14 @@ const WorkSpacePage = async () => {
   });
   return (
     <div className="flex  w-full gap-10 mb-20">
-      <div className="w-40%">
-        <WorkSpaceComponent />
-      </div>
+      <div className="w-40%">{/* <WorkSpaceComponent /> */}</div>
       <div className="w-full">
-        <div className="w-full ">
+        {/* <div className="w-full ">
           <HeaderComponent userData={userData} />
-        </div>
+        </div> */}
 
         <div className="w-full">
-          <h2 className="font-bold text-2xl text-[black]   bg-gray-200 p-10">
+          <h2 className="font-bold text-2xl text-[black]    p-10">
             HRD Design
           </h2>
           {/* <HeadertsubComponent /> */}

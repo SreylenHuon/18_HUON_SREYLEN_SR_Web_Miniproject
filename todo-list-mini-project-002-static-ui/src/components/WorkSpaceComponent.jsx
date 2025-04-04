@@ -3,6 +3,16 @@ import { workSpaceService } from "@/service/workspace.service";
 import { Ellipsis } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import FormWorkspaceComponent from "./FormWorkspaceComponent";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { createWorkSpaceAction } from "@/action/createWorkspaceAction";
 
 const WorkSpaceComponent = async (dataTask) => {
   const { payload: dataWorkSpace } = await workSpaceService();
@@ -28,23 +38,77 @@ const WorkSpaceComponent = async (dataTask) => {
               Workspace
             </h2>
           </div>
+          {/* <FormWorkspaceComponent /> */}
+          <Dialog>
+            <DialogTrigger>
+              {/* <button className="p-0.5 hover:bg-gray-100 duration-200 transition-colors text-gray-500 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 border rounded-lg"> */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+              {/* </button> */}
+            </DialogTrigger>
 
-          <button className="p-0.5 hover:bg-gray-100 duration-200 transition-colors text-gray-500 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 border rounded-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </button>
+            <DialogContent>
+              <div className="mt-7 bg-white  rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 border-2 border-indigo-300">
+                <div className="p-4 sm:p-7">
+                  <div className="text-center">
+                    <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
+                      Create WorkSpace
+                    </h1>
+                  </div>
+
+                  <div className="mt-5">
+                    <form action={createWorkSpaceAction}>
+                      <div className="grid gap-y-4">
+                        <div>
+                          <label
+                            for="email"
+                            className="block text-sm font-bold ml-1 mb-2 dark:text-white"
+                          >
+                            Email address
+                          </label>
+                          <div className="relative">
+                            <input
+                              type="text"
+                              id="email"
+                              name="workspacename"
+                              className="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm"
+                              required
+                              aria-describedby="email-error"
+                            />
+                          </div>
+                          <p
+                            className="hidden text-xs text-red-600 mt-2"
+                            id="email-error"
+                          >
+                            Please include a valid email address so we can get
+                            back to you
+                          </p>
+                        </div>
+                        <button
+                          type="submit"
+                          className="w-[100px] py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+                        >
+                          Create
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <nav className="mt-4 -mx-3 space-y-3 ">
