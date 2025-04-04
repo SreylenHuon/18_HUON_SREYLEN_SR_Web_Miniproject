@@ -1,8 +1,5 @@
 import CardComponent from "@/components/card";
-import HeaderComponent from "@/components/HeaderComponent";
-import HeadertsubComponent from "@/components/HeadertsubComponent";
-import WorkSpaceComponent from "@/components/WorkSpaceComponent";
-import { getAllTask, getAllUser } from "@/service/user.service";
+import { getAllTask } from "@/service/user.service";
 import React from "react";
 
 const WorkSpacePage = async () => {
@@ -26,15 +23,17 @@ const WorkSpacePage = async () => {
         </div> */}
 
         <div className="w-full">
-          <h2 className="font-bold text-2xl py-5 text-[black]    ">
-            HRD Design
-          </h2>
+          <div className="flex justify-between items-center">
+            <h2 className="font-bold text-2xl py-5 text-[black]    ">
+              HRD Design
+            </h2>
+          </div>
           {/* <HeadertsubComponent /> */}
           <div className="flex  gap-10 ">
             <div className="gap-5 mb-5">
               <span className="text-[#F96666] font-medium">Not Started</span>
               <div className="w-full border-t border-red-300 mb-8 "></div>
-              <CardComponent tasks={taskNotStart} className="mt-5" />
+              <CardComponent tasks={taskNotStart} />
             </div>
 
             <div className="mb-5">

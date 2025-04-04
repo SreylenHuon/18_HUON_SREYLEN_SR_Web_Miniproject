@@ -1,4 +1,5 @@
 "use client";
+import { deleteTaskAction } from "@/action/taskAction";
 import {
   Select,
   SelectContent,
@@ -6,9 +7,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
 import { Clock, Ellipsis } from "lucide-react";
-import React from "react";
+import React, { useActionState } from "react";
+import { DialogFooter } from "./ui/dialog";
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
@@ -18,7 +25,7 @@ const formatDate = (dateString) => {
   });
 };
 
-export default async function CardComponent({ tasks }) {
+export default function CardComponent({ tasks }) {
   // const taskNotStartStatus = dataTask?.payload?.filter((task) => {
   //   return task.status === "NOT_STARTED";
   // });
@@ -28,14 +35,11 @@ export default async function CardComponent({ tasks }) {
   // const taskFinishStatus = taskData?.payload?.filter((task) => {
   //   return task.status === "FINISHED";
   // });
+
+  const [state, formAction, isPending] = useActionState(deleteTaskAction, null);
   const handleUpdate = (taskId) => {
     console.log("Update task:", taskId);
     // You can trigger another modal or navigate to edit page
-  };
-
-  const handleDelete = (taskId) => {
-    console.log("Delete task:", taskId);
-    // Confirm and send delete request here
   };
 
   return (
@@ -58,23 +62,30 @@ export default async function CardComponent({ tasks }) {
                     </button>
                   </DialogTrigger>
                   <DialogContent className="bg-white rounded-xl p-6 shadow-xl w-[300px]">
-                    <div className="text-center mb-4">
-                      <h2 className="text-lg font-bold">Choose Option</h2>
-                    </div>
-                    <div className="flex flex-col gap-4">
-                      <button
-                        onClick={() => handleUpdate(item.taskId)}
-                        className="w-full py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition"
-                      >
-                        Update
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item.taskId)}
-                        className="w-full py-2 px-4 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
-                      >
-                        Delete
-                      </button>
-                    </div>
+                    <DialogTitle></DialogTitle>
+                    <DialogFooter>
+                      <div className="text-center mb-4">
+                        <h2 className="text-lg font-bold">Choose Option</h2>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <form action={formAction}>
+                          <input type="hidden" name="id" value={item.taskId} />
+
+                          <button
+                            onClick={() => handleUpdate(item.taskId)}
+                            className="w-full py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition"
+                          >
+                            Update
+                          </button>
+                          <button
+                            type="submit"
+                            className="w-full py-2 px-4 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
+                          >
+                            Delete
+                          </button>
+                        </form>
+                      </div>
+                    </DialogFooter>
                   </DialogContent>
                 </Dialog>
               </div>
